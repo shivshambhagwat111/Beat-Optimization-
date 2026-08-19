@@ -1,0 +1,35 @@
+databases:
+  - name: beat-optimizer-db
+    plan: free
+    databaseName: beat_optimizer
+    user: beat_optimizer
+
+services:
+  - type: web
+    name: beat-optimizer-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: beat-optimizer-db
+          property: connectionString
+      - key: MIN_OUTLETS_PER_BEAT
+        value: "25"
+      - key: MAX_OUTLETS_PER_BEAT
+        value: "35"
+      - key: FRONTEND_ORIGINS
+        value: https://beat-optimizer-frontend.onrender.com
+
+  - type: web
+    name: beat-optimizer-frontend
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start -- -p $PORT
+    envVars:
+      - key: NEXT_PUBLIC_API_BASE_URL
+        value: https://beat-optimizer-api.onrender.com

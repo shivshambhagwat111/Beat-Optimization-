@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+output/*
+!output/.gitkeep
+dev.db
+dev.db-shm
+dev.db-wal
+.claude/

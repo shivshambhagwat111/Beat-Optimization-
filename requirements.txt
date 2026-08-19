@@ -1,0 +1,24 @@
+# Data handling
+pandas
+openpyxl
+
+# Spatial clustering & route optimization
+ortools
+
+# Geospatial mapping
+folium
+geopy
+requests
+
+# API
+fastapi
+uvicorn
+pydantic
+python-multipart
+
+# Database (PostgreSQL / Supabase)
+sqlalchemy
+psycopg2-binary
+
+# Environment variables
+python-dotenv
