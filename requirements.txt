@@ -4,6 +4,7 @@ openpyxl
 
 # Spatial clustering & route optimization
 ortools
+scipy
 
 # Geospatial mapping
 folium
